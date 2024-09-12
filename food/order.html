@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details - VM's Cuisine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* To position navigation at the top right */
+        }
+        .nav-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .nav-button {
+            padding: 10px 15px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .nav-button:hover {
+            background-color: #1c86ee;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #1e90ff;
+            text-align: center; /* Center align all text inside the container */
+        }
+        h2 {
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #1e90ff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #f1f9ff;
+            flex-direction: column; /* Stack items vertically */
+            text-align: center; /* Center align text */
+        }
+        .total, .delivery-charge, .delivery-date, .delivery-boy, .order-num, .delivery-num {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .address {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #1e90ff;
+        }
+        /* Back Button */
+        .btn-back {
+            position: fixed; /* Fixes the button at the bottom */
+            bottom: 20px; /* Positions it 20px from the bottom */
+            left: 20px; /* Positions it 20px from the left */
+            width: auto; /* Auto width to make the button narrower */
+            padding: 10px 20px; /* Adjust padding to make it smaller */
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Slightly smaller font */
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow */
+            z-index: 1000; /* Ensures the button stays on top */
+        }
+        .btn-back:hover {
+            background-color: #1c86ee;
+        }
+        /* Cancel Order Button */
+        .btn-cancel {
+            position: fixed; /* Fixes the button at the bottom */
+            bottom: 20px; /* Positions it 20px from the bottom */
+            right: 20px; /* Positions it 20px from the right */
+            width: auto; /* Auto width to make the button narrower */
+            padding: 10px 20px; /* Adjust padding to make it smaller */
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Slightly smaller font */
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow */
+            z-index: 1000; /* Ensures the button stays on top */
+        }
+        .btn-cancel:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <button onclick="cancelOrder()" class="btn-cancel">Cancel Order</button>
+    <div class="nav-container">
+        <a href="home.html" class="nav-button">Home</a>
+        <a href="logout.html" class="nav-button">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Order Details</h2>
+        <div id="order-items"></div>
+        <p class="total" id="order-total-price">Total: $0</p>
+        <p class="delivery-charge" id="order-delivery-charge"></p>
+        <p class="delivery-date" id="order-delivery-date">Expected Delivery Time: Within 1-2 Hours</p>
+        <p class="delivery-boy" id="order-delivery-boy">Delivery Boy: Vishnu</p>
+        <p class="order-num" id="order-num">Order Number: ORD2410091514120507</p>
+        <p class="delivery-num" id="order-delivery-num">Delivery Boy Number: +91 9652791879</p>
+    </div>
+
+    <script>
+        function loadOrderDetails() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let orderItemsContainer = document.getElementById('order-items');
+            let totalPrice = 0;
+            const deliveryThreshold = 50; // Delivery charges applicable if total is below this amount
+            const deliveryCharge = 5; // Flat delivery charge
+            let deliveryChargeText = '';
+
+            orderItemsContainer.innerHTML = '';
+
+            cart.forEach((item) => {
+                totalPrice += item.price * item.count;
+                let orderItem = document.createElement('div');
+                orderItem.classList.add('order-item');
+                orderItem.innerHTML = `
+                    <span>${item.item} - $${item.price} x ${item.count} = $${(item.price * item.count).toFixed(2)}</span>
+                `;
+                orderItemsContainer.appendChild(orderItem);
+            });
+
+            if (totalPrice < deliveryThreshold && totalPrice > 0) {
+                totalPrice += deliveryCharge;
+                deliveryChargeText = `Delivery Charge: $${deliveryCharge.toFixed(2)}`;
+            } else if (totalPrice >= deliveryThreshold) {
+                deliveryChargeText = 'Free Delivery';
+            }
+
+            document.getElementById('order-total-price').textContent = 'Total: $' + totalPrice.toFixed(2);
+            document.getElementById('order-delivery-charge').textContent = deliveryChargeText;
+            document.getElementById('order-address').textContent = 'Address: ' + address;
+        }
+
+        function cancelOrder() {
+            window.location.href = 'cancel.html'; // Redirect to the cancellation confirmation page
+        }
+
+        // Load the order details on page load
+        window.onload = function() {
+            loadOrderDetails();
+        }
+    </script>
+</body>
+</html>

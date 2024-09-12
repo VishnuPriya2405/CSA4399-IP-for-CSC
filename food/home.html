@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: url('food1.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+/* Back Button */
+.btn-back {
+    position: fixed; /* Fixes the button in place */
+    bottom: 20px; /* Positions it 20px from the bottom */
+    left: 20px; /* Positions it 20px from the left */
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+    z-index: 1000; /* Ensures the button stays on top of other elements */
+}
+
+.btn-back:hover {
+    background-color: #1c86ee;
+}
+        /* Header Styles */
+        header {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px 0;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #e2e6ea;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #cfd6e0;
+        }
+
+        .language-selector {
+            margin-left: 20px;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('food2.png') no-repeat center center/cover;
+            color: white;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 80%;
+            margin: auto;
+        }
+
+        .hero h2 {
+            margin: 0 0 15px;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            margin: 0 0 25px;
+            font-size: 20px;
+        }
+
+        .cta-button {
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .feature {
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature h3 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .quick-links h3 {
+            margin-bottom: 15px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quick-links li {
+            margin: 10px 0;
+        }
+
+        .quick-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .quick-links a:hover {
+            text-decoration: underline;
+            color: #63707e;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin-top: 10px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                margin-bottom: 20px;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .hero {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="food3.png" alt="Logo" class="logo"> <!-- Logo -->
+            <h1 id="title"> VM's Cuisine</h1>
+            <nav>
+                <a href="profile.html" id="nav-profile">Profile Details</a>
+                <a href="orders.html" id="nav-orders">Orders</a>
+                <div class="language-selector">
+                    <select id="language" onchange="changeLanguage()">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="tel">Telugu</option>
+                        <option value="hin">Hindi</option>
+                        <option value="tam">Tamil</option>
+                    </select>
+                </div>
+                <div class="aiassistance-">
+                    <a href="ai.html">AI</a>
+                </div>
+                <a href="logout.html" id="nav-logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <main>
+        <div class="hero">
+            <div class="hero-content">
+                <h2 id="welcome">Welcome to VM's Cuisine</h2>
+                <p id="description">Discover your favorite restaurants and food with the best offers and location-based search.</p>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3 id="feature-restaurants">Restaurants List</h3>
+                <p>Explore a comprehensive list of restaurants available in our app.</p>
+                <a href="restaurants.html">View Restaurants</a>
+            </div>
+
+            <div class="feature">
+                <h3 id="feature-food">Food List</h3>
+                <p>Browse through the extensive list of food items available at our partnered restaurants.</p>
+                <a href="food-list.html">View Food List</a>
+            </div>
+
+            <div class="feature">
+                <h3 id="feature-offers">Offers</h3>
+                <p>Check out the latest deals and offers available just for you.</p>
+                <a href="offers.html">View Offers</a>
+            </div>
+
+            <div class="feature">
+                <h3 id="feature-location">Location-wise Restaurants</h3>
+                <p>Find restaurants based on your location for added convenience.</p>
+                <a href="location-wise-restaurants.html">Find Restaurants by Location</a>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <h3 id="quick-links-title">Quick Links</h3>
+            <ul>
+                <li><a href="about.html" id="quick-link-about">About Us</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 VM's Cuisine. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                title: "VM's Cuisine",
+                welcome: "Welcome to VM's Cuisine",
+                description: "Discover your favorite restaurants and food with the best offers and location-based search.",
+                nav: {
+                    restaurants: "Restaurants List",
+                    foodList: "Food List",
+                    offers: "Offers",
+                    locationRestaurants: "Location-wise Restaurants",
+                    profile: "Profile Details",
+                    orders: "Orders"
+                }
+            },
+            es: {
+                title: "Cocina de VM",
+                welcome: "Bienvenido a la Cocina de VM",
+                description: "Descubre tus restaurantes y comidas favoritas con las mejores ofertas y búsqueda por ubicación.",
+                nav: {
+                    restaurants: "Lista de Restaurantes",
+                    foodList: "Lista de Comidas",
+                    offers: "Ofertas",
+                    locationRestaurants: "Restaurantes por Ubicación",
+                    profile: "Detalles del Perfil",
+                    orders: "Pedidos"
+                }
+            },
+            fr: {
+                title: "Cuisine de VM",
+                welcome: "Bienvenue chez VM's Cuisine",
+                description: "Découvrez vos restaurants et plats préférés avec les meilleures offres et une recherche par localisation.",
+                nav: {
+                    restaurants: "Liste des Restaurants",
+                    foodList: "Liste des Plats",
+                    offers: "Offres",
+                    locationRestaurants: "Restaurants par Localisation",
+                    profile: "Détails du Profil",
+                    orders: "Commandes"
+                }
+            },
+            tel: {
+                title: "విఎం యొక్క వంటశాల",
+                welcome: "విఎం యొక్క వంటశాలకు స్వాగతం",
+                description: "మీ ఇష్టమైన రెస్టారెంట్లు మరియు ఆహారాలను ఉత్తమ ఆఫర్లతో మరియు స్థాన ఆధారిత శోధనతో కనుగొనండి.",
+                nav: {
+                    restaurants: "రెస్టారెంట్ జాబితా",
+                    foodList: "ఆహార జాబితా",
+                    offers: "ఆఫర్లు",
+                    locationRestaurants: "స్థానం ఆధారిత రెస్టారెంట్లు",
+                    profile: "ప్రొఫైల్ వివరాలు",
+                    orders: "ఆర్డర్లు"
+                }
+            },
+            hin: {
+                title: "वीएम की भोजनालय",
+                welcome: "वीएम की भोजनालय में आपका स्वागत है",
+                description: "अपने पसंदीदा रेस्तरां और भोजन को सर्वोत्तम ऑफ़र और स्थान आधारित खोज के साथ खोजें।",
+                nav: {
+                    restaurants: "रेस्तरां सूची",
+                    foodList: "भोजन सूची",
+                    offers: "ऑफ़र",
+                    locationRestaurants: "स्थान-आधारित रेस्तरां",
+                    profile: "प्रोफाइल विवरण",
+                    orders: "आदेश"
+                }
+            },
+            tam: {
+                title: "விஎம்'ஸ் சமையலறை",
+                welcome: "விஎம்'ஸ் சமையலறைக்கு வரவேற்கின்றோம்",
+                description: "உங்கள் விருப்பமான உணவகங்களையும் உணவுகளையும் சிறந்த சலுகைகளுடனும் இடம் அடிப்படையிலான தேடலுடன் கண்டறியுங்கள்.",
+                nav: {
+                    restaurants: "உணவக பட்டியல்",
+                    foodList: "உணவு பட்டியல்",
+                    offers: "சலுகைகள்",
+                    locationRestaurants: "இடவசதிகள் அடிப்படையிலான உணவகங்கள்",
+                    profile: "சுயவிவரம் விவரங்கள்",
+                    orders: "ஆர்டர்கள்"
+                }
+            }
+        };
+
+        // Function to change language
+        function changeLanguage() {
+            const selectedLang = document.getElementById('language').value;
+            const langData = translations[selectedLang];
+
+            // Change text for main elements
+            document.getElementById('title').textContent = langData.title;
+            document.getElementById('welcome').textContent = langData.welcome;
+            document.getElementById('description').textContent = langData.description;
+
+            // Change text for navigation
+            document.getElementById('nav-restaurants').textContent = langData.nav.restaurants;
+            document.getElementById('nav-food-list').textContent = langData.nav.foodList;
+            document.getElementById('nav-offers').textContent = langData.nav.offers;
+            document.getElementById('nav-location-restaurants').textContent = langData.nav.locationRestaurants;
+            document.getElementById('nav-profile').textContent = langData.nav.profile;
+            document.getElementById('nav-orders').textContent = langData.nav.orders;
+        }
+    </script>
+</body>
+</html>
+                   

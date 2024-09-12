@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nellore Spices- VM's Cuisine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007bff;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .food-category {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .food-category h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #ffffff;
+            font-size: 16px;
+        }
+
+        .food-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .food-item .details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .food-item .details span {
+            display: block;
+        }
+
+        .food-price {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .food-calories, .food-weight {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+        .btn-back {
+    position: fixed; /* Fixes the button in place */
+    bottom: 20px; /* Positions it 20px from the bottom */
+    left: 20px; /* Positions it 20px from the left */
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+    z-index: 1000; /* Ensures the button stays on top of other elements */
+}
+
+.btn-back:hover {
+    background-color: #1c86ee;
+}
+        .cart-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #007bff;
+            text-decoration: none;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .item-count {
+            font-size: 14px;
+            font-weight: normal;
+            color: #555;
+            margin-left: 10px;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            z-index: 1000;
+        }
+
+        .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <div class="nav-bar"></div>
+        <a href="home.html">Home</a>
+    </div>
+    <div class="container">
+        <h2>Nellore Spices Menu</h2>
+
+        <!-- Non-Veg Section -->
+        <div class="food-category">
+            <h3>Non-Veg</h3>
+            <div class="food-item">
+                <img src="curry.png" alt="Chicken Curry">
+                <div class="details">
+                    <span>Chicken Curry</span>
+                    <span class="food-price">($180)</span>
+                    <span class="food-calories">Calories: 500 kcal</span>
+                    <span class="food-weight">Weight: 300g</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Chicken Curry', 180)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Chicken Curry')">Remove</button>
+                    <span class="item-count" id="count-Chicken Curry"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="fish.png" alt="Grilled Fish">
+                <div class="details">
+                    <span>Grilled Fish</span>
+                    <span class="food-price">($200)</span>
+                    <span class="food-calories">Calories: 350 kcal</span>
+                    <span class="food-weight">Weight: 200g</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Grilled Fish', 200)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Grilled Fish')">Remove</button>
+                    <span class="item-count" id="count-Grilled Fish"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desserts & Drinks Section -->
+        <div class="food-category">
+            <h3>Desserts & Drinks</h3>
+            <div class="food-item">
+                <img src="cake.png" alt="Chocolate Cake">
+                <div class="details">
+                    <span>Chocolate Cake</span>
+                    <span class="food-price">($430)</span>
+                    <span class="food-calories">Calories: 350 kcal</span>
+                    <span class="food-weight">Weight: 150g</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Chocolate Cake',430)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Chocolate Cake')">Remove</button>
+                    <span class="item-count" id="count-Chocolate Cake"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="coffee.png" alt="Coffee">
+                <div class="details">
+                    <span>Coffee</span>
+                    <span class="food-price">($30)</span>
+                    <span class="food-calories">Calories: 80 kcal</span>
+                    <span class="food-weight">Weight: 200ml</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Coffee', 30)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Coffee')">Remove</button>
+                    <span class="item-count" id="count-Coffee"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="icecream.png" alt="Vanilla Ice Cream">
+                <div class="details">
+                    <span>Vanilla Ice Cream</span>
+                    <span class="food-price">($60)</span>
+                    <span class="food-calories">Calories: 250 kcal</span>
+                    <span class="food-weight">Weight: 150g</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Vanilla Ice Cream', 60)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Vanilla Ice Cream')">Remove</button>
+                    <span class="item-count" id="count-Vanilla Ice Cream"></span>
+                </div>
+            </div>
+        </div>
+
+        <a href="cart.html" class="cart-link">Go to Cart</a>
+    </div>
+
+    <script>
+        function addToCart(item, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+
+            if (existingItem) {
+                existingItem.count += 1;
+            } else {
+                cart.push({ item, price, count: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateItemCount(item);
+        }
+
+        function removeFromCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+
+            if (existingItem) {
+                existingItem.count -= 1;
+                if (existingItem.count <= 0) {
+                    cart = cart.filter(cartItem => cartItem.item !== item);
+                }
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateItemCount(item);
+        }
+
+        function updateItemCount(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+                let countElement = document.getElementById(`count-${item}`);
+
+                if (existingItem && existingItem.count > 0) {
+                    countElement.textContent = `Count: ${existingItem.count}`;
+                } else {
+                    countElement.textContent = '';
+                }
+            }
+
+            // Initialize counts on page load
+            window.onload = function() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.forEach(cartItem => {
+                    updateItemCount(cartItem.item);
+                });
+            }
+    </script>
+</body>
+</html>

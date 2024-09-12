@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Assistance</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Chatbot Styles */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: #fff;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            display: none; /* Initially hidden */
+        }
+
+        #chatbot-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        #chatbot-input {
+            display: flex;
+            padding: 5px;
+            border-top: 1px solid #ddd;
+        }
+
+        #chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #chatbot-input button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #chatbot-input button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Chatbot Toggle Button */
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-back {
+    position: fixed; /* Fixes the button in place */
+    bottom: 20px; /* Positions it 20px from the bottom */
+    left: 20px; /* Positions it 20px from the left */
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+    z-index: 1000; /* Ensures the button stays on top of other elements */
+}
+
+.btn-back:hover {
+    background-color: #1c86ee;
+}
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <header>
+        <h1>AI Assistance for VM's Cuisine</h1>
+    </header>
+
+    <main>
+        <p>Welcome to the AI assistance page. You can ask questions about our website, navigate through sections, or get information on how to use different features. Click the chat button at the bottom right to start!</p>
+    </main>
+
+    <!-- Chatbot UI -->
+    <div id="chatbot">
+        <div id="chatbot-header">Ask Me Anything!</div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your question...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+
+    <script>
+        // Sample FAQ responses
+        const responses = {
+            "hello": "Hello! How can I assist you today?",
+            "what is this website about": "This website is about VM's Cuisine, where you can explore restaurants, view food lists, find location-based restaurants, and discover the best offers.",
+            "how do i register": "To register, click the 'Register Now' button on the homepage or visit the registration page from the menu.",
+            "what are the offers": "We have various offers on food items and restaurants. Check the 'Offers' section in the navigation menu.",
+            "how to contact support": "You can contact our support team via the 'Contact Us' page accessible from the footer."
+        };
+
+        // Toggle Chatbot Visibility
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' || chatbot.style.display === '' ? 'block' : 'none';
+        }
+
+        // Send Message Function
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value.toLowerCase().trim();
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const userMessage = document.createElement('div');
+            userMessage.textContent = `You: ${userInput}`;
+            userMessage.style.fontWeight = 'bold';
+            chatbotMessages.appendChild(userMessage);
+
+            // Check for a predefined response or fallback
+            let responseMessage = document.createElement('div');
+            responseMessage.textContent = responses[userInput] || "I'm sorry, I didn't understand that. Please try asking something else.";
+            chatbotMessages.appendChild(responseMessage);
+
+            // Clear input field
+            document.getElementById('user-input').value = '';
+
+            // Scroll to the bottom
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
