@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Biriyani - VM's Cuisine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007bff;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .food-category {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .food-category h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #ffffff;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .food-item img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .food-details {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .food-details span {
+            display: block;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .food-price {
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+
+        .cart-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #007bff;
+            text-decoration: none;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .item-count {
+            font-size: 14px;
+            font-weight: normal;
+            color: #555;
+            margin-left: 10px;
+        }
+
+        .btn-back {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .btn-back:hover {
+            background-color: #1c86ee;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            z-index: 1000;
+        }
+
+        .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <div class="nav-bar">
+        <a href="home.html">Home</a>
+    </div>
+    <div class="container">
+        <h2>SS Biriyani Menu</h2>
+
+        <!-- Starters Section -->
+        <div class="food-category">
+            <h3>Starters</h3>
+            <div class="food-item">
+                <img src="soup.png" alt="Chicken Soup">
+                <div class="food-details">
+                    <span>Chicken Soup</span>
+                    <span class="food-price">Price: $170</span>
+                    <span>Calories: 150</span>
+                    <span>Quantity: 250 ml</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Chicken Soup', 5)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Chicken Soup')">Remove</button>
+                    <span class="item-count" id="count-ChickenSoup"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="rolls.png" alt="Spring Rolls">
+                <div class="food-details">
+                    <span>Spring Rolls</span>
+                    <span class="food-price">Price: $70</span>
+                    <span>Calories: 200</span>
+                    <span>Quantity: 4 pieces</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Spring Rolls', 7)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Spring Rolls')">Remove</button>
+                    <span class="item-count" id="count-SpringRolls"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Courses Section -->
+        <div class="food-category">
+            <h3>Main Courses</h3>
+            <div class="food-item">
+                <img src="biriyani.png" alt="Chicken Biriyani">
+                <div class="food-details">
+                    <span>Chicken Biriyani</span>
+                    <span class="food-price">Price: $250</span>
+                    <span>Calories: 800</span>
+                    <span>Quantity: 1 plate</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Chicken Biriyani', 25)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Chicken Biriyani')">Remove</button>
+                    <span class="item-count" id="count-ChickenBiriyani"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="mutton.png" alt="Mutton Biriyani">
+                <div class="food-details">
+                    <span>Mutton Biriyani</span>
+                    <span class="food-price">Price: $300</span>
+                    <span>Calories: 900</span>
+                    <span>Quantity: 1 plate</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Mutton Biriyani', 30)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Mutton Biriyani')">Remove</button>
+                    <span class="item-count" id="count-MuttonBiriyani"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="veg.png" alt="Veg Biriyani">
+                <div class="food-details">
+                    <span>Veg Biriyani</span>
+                    <span class="food-price">Price: $150</span>
+                    <span>Calories: 600</span>
+                    <span>Quantity: 1 plate</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Veg Biriyani', 15)">Add</button>
+                    <button class="btn btn-remove"onclick="removeFromCart('Veg Biriyani')">Remove</button>
+                    <span class="item-count" id="count-VegBiriyani"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desserts and Drinks Section -->
+        <div class="food-category">
+            <h3>Desserts & Drinks</h3>
+            <div class="food-item">
+                <img src="ice.png" alt="Chocolate Ice Cream">
+                <div class="food-details">
+                    <span>Chocolate Ice Cream</span>
+                    <span class="food-price">Price: $80</span>
+                    <span>Calories: 250</span>
+                    <span>Quantity: 1 scoop</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Chocolate Ice Cream', 4)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Chocolate Ice Cream')">Remove</button>
+                    <span class="item-count" id="count-IceCream"></span>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="lemon.png" alt="Lemonade">
+                <div class="food-details">
+                    <span>Lemonade</span>
+                    <span class="food-price">Price: $30</span>
+                    <span>Calories: 100</span>
+                    <span>Quantity: 300 ml</span>
+                </div>
+                <div>
+                    <button class="btn btn-add" onclick="addToCart('Lemonade', 3)">Add</button>
+                    <button class="btn btn-remove" onclick="removeFromCart('Lemonade')">Remove</button>
+                    <span class="item-count" id="count-Lemonade"></span>
+                </div>
+            </div>
+        </div>
+
+        <a href="cart.html" class="cart-link">Go to Cart</a>
+    </div>
+
+    <script>
+        function addToCart(item, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+
+            if (existingItem) {
+                existingItem.count += 1;
+            } else {
+                cart.push({ item, price, count: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateItemCount(item);
+        }
+
+        function removeFromCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+
+            if (existingItem) {
+                existingItem.count -= 1;
+                if (existingItem.count <= 0) {
+                    cart = cart.filter(cartItem => cartItem.item !== item);
+                }
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateItemCount(item);
+        }
+
+        function updateItemCount(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingItem = cart.find(cartItem => cartItem.item === item);
+            let countElement = document.getElementById(`count-${item.replace(/ /g, '')}`);
+
+            if (existingItem && existingItem.count > 0) {
+                countElement.textContent = `Count: ${existingItem.count}`;
+            } else {
+                countElement.textContent = '';
+            }
+        }
+
+        // Initialize item counts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            let items = ['Chicken Soup', 'Spring Rolls', 'Chicken Biriyani', 'Mutton Biriyani', 'Veg Biriyani', 'Chocolate Ice Cream', 'Lemonade'];
+            items.forEach(item => updateItemCount(item));
+        });
+    </script>
+</body>
+</html>

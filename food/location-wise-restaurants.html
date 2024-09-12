@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location-wise Restaurants - VM's Cuisine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px 0;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #e2e6ea;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #cfd6e0;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Location-wise Restaurants */
+        .location-restaurants {
+            margin: 20px 0;
+        }
+
+        .location-restaurants h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .location-search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .location-search input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            width: 300px;
+        }
+
+        .location-search button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .location-search button:hover {
+            background-color: #0056b3;
+        }
+
+        .restaurant-item {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .restaurant-item img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .restaurant-item h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #007bff;
+        }
+
+        .restaurant-item p {
+            margin: 5px 0;
+        }
+
+        .restaurant-item .address {
+            font-style: italic;
+        }
+
+        .restaurant-item a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .restaurant-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .btn-back {
+    position: fixed; /* Fixes the button in place */
+    bottom: 20px; /* Positions it 20px from the bottom */
+    left: 20px; /* Positions it 20px from the left */
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+    z-index: 1000; /* Ensures the button stays on top of other elements */
+}
+
+.btn-back:hover {
+    background-color: #1c86ee;
+}
+    </style>
+</head>
+<body>
+    <button onclick="history.back()" class="btn-back">Back</button>
+    <header>
+        <div class="header-container">
+            <img src="food3.png" alt="Logo" class="logo"> <!-- Logo -->
+            <h1>VM's Cuisine</h1>
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="restaurants.html">Restaurants</a>
+                <a href="food-list.html">Food List</a>
+                <a href="offers.html">Offers</a>
+                <a href="logout.html">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="location-restaurants">
+            <h2>Find Restaurants by Location</h2>
+
+            <div class="location-search">
+                <input type="text" id="locationInput" placeholder="Enter your location...">
+                <button onclick="searchRestaurants()">Search</button>
+            </div>
+
+            <div id="restaurantList">
+                <!-- Example Restaurant Entries -->
+                <div class="restaurant-item" data-location="Thandalam">
+                    <img src="kfc.png" alt="KFC">
+                    <div>
+                        <h3>KFC</h3>
+                        <p class="address">Thandalam, Tamil Nadu 600124</p>
+                        <p>Crispy, Crunchy, and Irresistible - Discover the KFC Experience in Thandalam!</p>
+                        <a href="kfc.html">View Details</a>
+                    </div>
+                </div>
+                <div class="restaurant-item" data-location="Sriperumbudur">
+                    <img src="ss.png"SS Biryani">
+                    <div>
+                        <h3>SS Bucket Biriyani</h3>
+                        <p class="address">Sriperumbudur, Tamil Nadu 600124</p>
+                        <p>A Symphony of Spices - Experience the Authentic SS Biryani Flavors!</p>
+                        <a href="ssb.html">View Details</a>
+                    </div>
+                </div>
+                <div class="restaurant-item" data-location="Madivilagam">
+                    <img src="mac.png"McDonald's">
+                    <div>
+                        <h3>McDonald's</h3>
+                        <p class="address">Building No 84 & 85, Madivilagam, Chennai Bangalore Highway, Thirumazhisai, Tamil Nadu 600124</p>
+                        <p>Enjoy your favorite fast food at McDonald's!</p>
+                        <a href="mac.html">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 VM's Cuisine. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to handle restaurant search based on location
+        function searchRestaurants() {
+            const location = document.getElementById('locationInput').value.toLowerCase();
+            const restaurantItems = document.querySelectorAll('.restaurant-item');
+            let found = false;
+
+            restaurantItems.forEach(item => {
+                const itemLocation = item.getAttribute('data-location').toLowerCase();
+                if (itemLocation.includes(location)) {
+                    item.style.display = 'flex';
+                    found = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (!found) {
+                alert('No restaurants found for the location: ' + location);
+            }
+        }
+    </script>
+</body>
+</html>

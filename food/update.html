@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #1e90ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+        h2 {
+            color: #1e90ff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #1c86ee;
+        }
+        .btn-back {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Confirmation</h2>
+        <p>Your order has been placed successfully!</p>
+        <p>Thank you for your purchase.</p>
+        <button class="button" onclick="updateProfile()">Update Profile</button>
+        <a href="order.html" class="button btn-back">View Order Details</a>
+        <a href="home.html" class="button btn-back">Back to Home</a>
+    </div>
+
+    <script>
+        function updateProfile() {
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            user.coins = (user.coins || 0) + 50; // Add 50 super coins
+            localStorage.setItem('user', JSON.stringify(user));
+            alert('Profile updated with 50 super coins!');
+        }
+    </script>
+</body>
+</html>

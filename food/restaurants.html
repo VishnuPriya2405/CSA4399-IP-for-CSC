@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants - VM's Cuisine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px 0;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #e2e6ea;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #cfd6e0;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Restaurants List */
+        .restaurant-list {
+            margin: 20px 0;
+        }
+
+        .restaurant-list h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .restaurant-item {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            padding: 15px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .restaurant-item img {
+            border-radius: 10px;
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .restaurant-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align items at the top */
+            flex: 1; /* Take up remaining space */
+            text-align: right; /* Align text to the right */
+        }
+
+        .restaurant-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #007bff;
+        }
+
+        .restaurant-item .btn-container {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+            margin-top: 10px; /* Space between name and buttons */
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+
+        .restaurant-item p {
+            margin: 5px 0;
+        }
+
+        .btn-view-menu, .btn-add-to-cart {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-view-menu {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .btn-view-menu:hover {
+            background-color: #218838;
+        }
+
+        .btn-add-to-cart {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #e0a800;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="food3.png" alt="Logo" class="logo"> <!-- Logo -->
+            <h1>VM's Cuisine</h1>
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="profile.html">Profile Details</a>
+                <a href="offers.html">Offers</a>
+                <a href="logout.html">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="restaurant-list">
+            <h2>Available Restaurants</h2>
+
+            <div class="restaurant-item">
+                <img src="kfc.png" alt="KFC">
+                <div class="restaurant-info">
+                    <h3><a href="kfc.html?restaurant=1">KFC</a></h3>
+                    <div class="btn-container">
+                        <a href="kfc.html?restaurant=1" class="btn-view-menu">View Menu</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="restaurant-item">
+                <img src="ss.png" alt="SS Biriyani">
+                <div class="restaurant-info">
+                    <h3><a href="ssb.html?restaurant=2">SS Biriyani</a></h3>
+                    <div class="btn-container">
+                        <a href="ssb.html?restaurant=2" class="btn-view-menu">View Menu</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="restaurant-item">
+                <img src="basota.png" alt="Basota">
+                <div class="restaurant-info">
+                    <h3><a href="basota.html?restaurant=3">Basota</a></h3>
+                    <div class="btn-container">
+                        <a href="basota.html?restaurant=3" class="btn-view-menu">View Menu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More restaurants can be added here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 VM's Cuisine. All rights reserved.</p>
+    </footer>
+</body>
+</html>
